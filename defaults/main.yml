@@ -1,0 +1,9 @@
+---
+
+zammad_ssl_dir: '/etc/ssl/zammad'
+zammad_ssl_cert_key_local_path: '/tmp'
+zammad_ssl_cert_local_path: '/tmp'
+zammad_ssl_cert_key: 'my_zammad_key.pem'
+zammad_ssl_cert: 'my_zammad_cert.pem'
+
+...

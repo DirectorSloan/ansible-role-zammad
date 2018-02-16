@@ -1,0 +1,13 @@
+---
+
+- name: restart zammad nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: restart elasticsearch
+  service:
+    name: elasticsearch
+    state: restarted
+
+...

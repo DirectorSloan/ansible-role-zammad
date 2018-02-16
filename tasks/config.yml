@@ -1,0 +1,30 @@
+---
+
+- name: config basic nginx
+  template:
+   src: nginx-base.j2
+   dest: "/etc/nginx/nginx.conf"
+   mode: 0644
+   owner: root
+   group: root
+  notify: restart zammad nginx
+
+- name: config nginx for zammad use
+  template:
+   src: nginx-zammad.j2
+   dest: "/etc/nginx/conf.d/zammad.conf"
+   mode: 0644
+   owner: root
+   group: root
+  notify: restart zammad nginx
+
+- name: config elasticsearch on zammad host
+  template:
+   src: elasticsearch.j2
+   dest: "/etc/elasticsearch/elasticsearch.yml"
+   mode: 0660
+   owner: root
+   group: elasticsearch
+  notify: restart elasticsearch
+
+...
