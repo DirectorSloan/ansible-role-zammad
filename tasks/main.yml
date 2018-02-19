@@ -11,11 +11,6 @@
     skip_if_unavailable: yes
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
-- name: ensuring elasticsearch is started
-  service:
-    name: elasticsearch
-    state: started
-
 - name: install zammad yum repo
   yum_repository:
     baseurl: "https://dl.packager.io/srv/rpm/zammad/zammad/stable/el/7/x86_64"
@@ -57,6 +52,11 @@
 
 - name: config elasticsearch for zammad
   command: zammad run rails r "Setting.set('es_url', 'http://localhost:9200')"
+
+- name: ensuring elasticsearch is started
+  service:
+    name: elasticsearch
+    state: started
 
 #- name: rebuild elasticsearch zammad searchindex
 #  command: zammad run rake searchindex:rebuild
