@@ -26,7 +26,7 @@
 - name: install zammad
   yum: pkg={{ item }}
   with_items:
-    - zammad-2.2
+    - zammad-"{{ zammad_version }}"
 
 - name: install java openjdk for elasticsearch
   yum: pkg={{ item }}
@@ -50,8 +50,8 @@
 - name: copy cert from localhost to system
   local_action: command scp "{{ zammad_ssl_cert_key_local_path }}/{{ zammad_ssl_cert_key }}" "{{ zammad_ssl_cert_local_path }}/{{ zammad_ssl_cert }}" "{{ ansible_fqdn }}:{{ zammad_ssl_dir }}"
 
-- name: config elasticsearch for zammad
-  command: zammad run rails r "Setting.set('es_url', 'http://localhost:9200')"
+#- name: config elasticsearch for zammad
+#  command: zammad run rails r "Setting.set('es_url', 'http://localhost:9200')"
 
 - name: ensuring elasticsearch is started
   service:
