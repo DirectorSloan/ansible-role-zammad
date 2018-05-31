@@ -1,6 +1,3 @@
-# ansible-role-zammad
-ansible role to install and configure zammad on linux
-
 Ansible Role: zammad
 =====================
 
