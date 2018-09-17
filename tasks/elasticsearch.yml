@@ -1,0 +1,26 @@
+---
+
+- name: ensuring elasticsearch is started
+  service:
+    name: elasticsearch
+    state: started
+  tags:
+    - elasticsearch
+
+- name: config elasticsearch for zammad
+  command: zammad run rails r "Setting.set('es_url', 'http://127.0.0.1:9200')"
+  tags:
+    - elasticsearch
+
+- name: install ingest plugin for elasticsearch 2.6.x
+  command: '/usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-attachment'
+  notify: restart elasticsearch
+  tags:
+    - elasticsearch
+
+- name: rebuild searchindex
+  command: 'zammad run rake searchindex:rebuild'
+  tags:
+    - elasticsearch
+
+...

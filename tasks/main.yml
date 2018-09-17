@@ -1,43 +1,19 @@
 ---
 
-- name: install elasticsearch yum repo
-  yum_repository:
-    baseurl: "https://artifacts.elastic.co/packages/5.x/yum"
-    gpgcheck: yes
-    gpgkey: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
-    enabled: yes
-    name: "elasticsearch-5.x"
-    description: "Elasticsearch repository for 5.x packages"
-    skip_if_unavailable: yes
-  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
+- name: prepare custom repos
+  import_tasks: yumrepos.yml
+  tags:
+    - elasticsearch
+    - zammad
+    - yumrepos
 
-- name: install zammad yum repo
-  yum_repository:
-    baseurl: "https://dl.packager.io/srv/rpm/zammad/zammad/stable/el/7/x86_64"
-    gpgcheck: no
-    repo_gpgcheck: no
-    gpgkey: "https://dl.packager.io/srv/zammad/zammad/key"
-    enabled: yes
-    name: "zammad"
-    description: "zammad project repo"
-    skip_if_unavailable: yes
-  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
-
-- name: install zammad
-  yum: pkg={{ item }}
-  with_items:
-    - zammad-"{{ zammad_version }}"
-
-- name: install java openjdk for elasticsearch
-  yum: pkg={{ item }}
-  with_items:
-    - java-1.8.0-openjdk.x86_64
-
-- name: add nginx user to nginx group
-  user:
-    name: nginx
-    groups: nginx
-    append: yes
+- name: installation steps
+  import_tasks: install.yml
+  tags:
+    - elasticsearch
+    - java
+    - yum
+    - zammad
 
 - name: create zammad ssl dir
   file:
@@ -50,17 +26,10 @@
 - name: copy cert from localhost to system
   local_action: command scp "{{ zammad_ssl_cert_key_local_path }}/{{ zammad_ssl_cert_key }}" "{{ zammad_ssl_cert_local_path }}/{{ zammad_ssl_cert }}" "{{ ansible_fqdn }}:{{ zammad_ssl_dir }}"
 
-#- name: config elasticsearch for zammad
-#  command: zammad run rails r "Setting.set('es_url', 'http://localhost:9200')"
-
-- name: ensuring elasticsearch is started
-  service:
-    name: elasticsearch
-    state: started
-
-#- name: rebuild elasticsearch zammad searchindex
-#  command: zammad run rake searchindex:rebuild
-# still dont work
+- name: elasticsearch for zammad details
+  import_tasks: elasticsearch.yml
+  tags:
+    - elasticsearch
 
 - name: include config changes
   include_tasks: config.yml
