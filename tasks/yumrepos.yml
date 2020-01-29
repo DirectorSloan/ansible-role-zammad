@@ -15,11 +15,11 @@
   yum_repository:
     baseurl: "https://dl.packager.io/srv/rpm/zammad/zammad/stable/el/7/x86_64"
     gpgcheck: no
-    repo_gpgcheck: no
+    repo_gpgcheck: yes
     gpgkey: "https://dl.packager.io/srv/zammad/zammad/key"
     enabled: yes
     name: "zammad"
-    description: "zammad project repo"
+    description: "Repository for zammad/zammad (stable) packages."
     skip_if_unavailable: yes
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
