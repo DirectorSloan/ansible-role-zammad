@@ -23,8 +23,15 @@
     owner: root
     group: nginx
 
-- name: copy cert from localhost to system
-  local_action: command scp "{{ zammad_ssl_cert_key_local_path }}/{{ zammad_ssl_cert_key }}" "{{ zammad_ssl_cert_local_path }}/{{ zammad_ssl_cert }}" "{{ ansible_fqdn }}:{{ zammad_ssl_dir }}"
+- name: copy cert to remote host
+  copy:
+    src: "{{ zammad_ssl_cert_key_local_path }}/{{ zammad_ssl_cert }}"
+    dest: "{{ zammad_ssl_dir }}"
+
+- name: copy key to remote host
+  copy:
+    src: "{{ zammad_ssl_cert_key_local_path }}/{{ zammad_ssl_cert_key }}"
+    dest: "{{ zammad_ssl_dir }}"
 
 - name: elasticsearch for zammad details
   import_tasks: elasticsearch.yml
