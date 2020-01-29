@@ -2,12 +2,12 @@
 
 - name: install elasticsearch yum repo
   yum_repository:
-    baseurl: "https://artifacts.elastic.co/packages/5.x/yum"
+    baseurl: "https://artifacts.elastic.co/packages/7.x/yum"
     gpgcheck: yes
     gpgkey: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
     enabled: yes
-    name: "elasticsearch-5.x"
-    description: "Elasticsearch repository for 5.x packages"
+    name: "elasticsearch-7.x"
+    description: "Elasticsearch repository for 7.x packages"
     skip_if_unavailable: yes
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
