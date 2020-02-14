@@ -5,7 +5,7 @@
     baseurl: "https://artifacts.elastic.co/packages/5.x/yum"
     gpgcheck: yes
     gpgkey: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
-    enabled: yes
+    enabled: no
     name: "elasticsearch-5.x"
     description: "Elasticsearch repository for 5.x packages"
     skip_if_unavailable: yes
@@ -17,7 +17,7 @@
     gpgcheck: no
     repo_gpgcheck: no
     gpgkey: "https://dl.packager.io/srv/zammad/zammad/key"
-    enabled: yes
+    enabled: no
     name: "zammad"
     description: "zammad project repo"
     skip_if_unavailable: yes

@@ -1,14 +1,13 @@
 ---
 
 - name: install zammad
-  yum: pkg={{ item }}
-  with_items:
-    - zammad
+  yum:
+    pkg: zammad
+  enablerepo: zammad, elasticsearch-5.x
 
 - name: install java openjdk for elasticsearch
-  yum: pkg={{ item }}
-  with_items:
-    - java-1.8.0-openjdk.x86_64
+  yum:
+    pkg: java-1.8.0-openjdk.x86_64
 
 - name: add nginx user to nginx group
   user:
