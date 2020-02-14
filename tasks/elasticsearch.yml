@@ -12,7 +12,8 @@
   tags:
     - elasticsearch
 
-- elasticsearch_plugin:
+- name: installing ingest-attachment plugin for elasticsearch
+  elasticsearch_plugin:
     name: ingest-attachment
     state: present
   notify: restart elasticsearch
