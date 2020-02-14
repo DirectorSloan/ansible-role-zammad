@@ -12,11 +12,13 @@
   tags:
     - elasticsearch
 
-- name: install ingest plugin for elasticsearch 2.6.x
-  command: '/usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-attachment'
+- elasticsearch_plugin:
+    name: ingest-attachment
+    state: present
   notify: restart elasticsearch
   tags:
     - elasticsearch
+    - elasticsearch-plugins
 
 - name: rebuild searchindex
   command: 'zammad run rake searchindex:rebuild'
