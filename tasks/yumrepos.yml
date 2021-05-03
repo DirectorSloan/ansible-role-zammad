@@ -1,25 +1,25 @@
 ---
 
-- name: install elasticsearch yum repo
+- name: install elasticsearch yum repo for 7.x
   yum_repository:
-    baseurl: "https://artifacts.elastic.co/packages/5.x/yum"
+    baseurl: "https://artifacts.elastic.co/packages/7.x/yum"
     gpgcheck: yes
     gpgkey: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
     enabled: no
-    name: "elasticsearch-5.x"
-    description: "Elasticsearch repository for 5.x packages"
+    name: "elasticsearch"
+    description: "Elasticsearch repository for 7.x packages"
     skip_if_unavailable: yes
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
 - name: install zammad yum repo
   yum_repository:
     baseurl: "https://dl.packager.io/srv/rpm/zammad/zammad/stable/el/7/x86_64"
-    gpgcheck: no
-    repo_gpgcheck: no
+    gpgcheck: yes
+    repo_gpgcheck: yes
     gpgkey: "https://dl.packager.io/srv/zammad/zammad/key"
     enabled: no
     name: "zammad"
-    description: "zammad project repo"
+    description: "zammad project repo for CentOS7"
     skip_if_unavailable: yes
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
