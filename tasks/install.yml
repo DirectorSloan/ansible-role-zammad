@@ -3,7 +3,7 @@
 - name: install zammad
   yum:
     pkg: zammad
-  enablerepo: zammad, elasticsearch
+    enablerepo: zammad, elasticsearch
 
 - name: install java openjdk for elasticsearch
   yum:
