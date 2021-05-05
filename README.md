@@ -30,6 +30,7 @@ Requirements
 ------------
 
 - Ansible 2+
+- Python3 (ansible_python_interpreter set in defaults)
 
 Role Variables
 --------------

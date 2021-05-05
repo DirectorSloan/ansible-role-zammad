@@ -1,5 +1,7 @@
 ---
 
+ansible_python_interpreter: '/usr/bin/python3'
+
 zammad_version: '4.0.0'
 
 zammad_ssl_dir: '/etc/ssl/zammad'
