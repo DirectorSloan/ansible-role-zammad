@@ -1,6 +1,6 @@
 ---
 
-zammad_version: '3.2.0'
+zammad_version: '4.0.0'
 
 zammad_ssl_dir: '/etc/ssl/zammad'
 zammad_ssl_cert_key_local_path: '/tmp'
