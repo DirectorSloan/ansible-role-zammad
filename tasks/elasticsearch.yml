@@ -7,11 +7,6 @@
   tags:
     - elasticsearch
 
-- name: config elasticsearch for zammad
-  command: zammad run rails r "Setting.set('es_url', 'http://127.0.0.1:9200')"
-  tags:
-    - elasticsearch
-
 - name: installing ingest-attachment plugin for elasticsearch
   elasticsearch_plugin:
     name: ingest-attachment
@@ -20,10 +15,5 @@
   tags:
     - elasticsearch
     - elasticsearch-plugins
-
-- name: rebuild searchindex
-  command: 'zammad run rake searchindex:rebuild'
-  tags:
-    - elasticsearch
 
 ...

@@ -4,6 +4,9 @@
   yum:
     pkg: 'zammad-{{ zammad_version }}'
     enablerepo: zammad, elasticsearch
+  notify:
+    - config elasticsearch for zammad
+    - rebuild zammad elasticsearch searchindex
 
 - name: install java openjdk for elasticsearch
   yum:
