@@ -3,7 +3,7 @@
 - name: install elasticsearch yum repo for 7.x
   yum_repository:
     baseurl: "https://artifacts.elastic.co/packages/7.x/yum"
-    gpgcheck: yes
+    gpgcheck: no
     gpgkey: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
     enabled: no
     name: "elasticsearch"
@@ -14,7 +14,7 @@
 - name: install zammad yum repo
   yum_repository:
     baseurl: "https://dl.packager.io/srv/rpm/zammad/zammad/stable/el/7/x86_64"
-    gpgcheck: yes
+    gpgcheck: no
     repo_gpgcheck: yes
     gpgkey: "https://dl.packager.io/srv/zammad/zammad/key"
     enabled: no
