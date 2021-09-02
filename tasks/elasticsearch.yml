@@ -11,6 +11,7 @@
   elasticsearch_plugin:
     name: ingest-attachment
     state: present
+    force: yes
   notify: restart elasticsearch
   tags:
     - elasticsearch
