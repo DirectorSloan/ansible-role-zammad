@@ -1,7 +1,7 @@
 Ansible Role: zammad
 =====================
 
-An Ansible role that installs [zammad][] and configures it. It is basically written for RHEL/CentOS but can be ported to other distributions.
+An Ansible role that installs [zammad](https://zammad.org) and configures it. It is basically written for RHEL/CentOS but can be ported to other distributions.
 
 Table of Contents
 -----------------
@@ -30,20 +30,19 @@ Requirements
 ------------
 
 - Ansible 2+
+- SSL Certificates for nginx server (mandatory)
 
 Role Variables
 --------------
 
 ### Basic Variables
 
-Variables with defaults:
+Variables you have to set:
 
 ```yml
-zammad_ssl_cert_key_local_path: '/tmp'
-zammad_ssl_cert_local_path: '/tmp'
 zammad_ssl_cert_key: 'my_zammad_key.pem'
 zammad_ssl_cert: 'my_zammad_cert.pem'
-zammad_ssl_dir: '/etc/ssl/zammad'
+zammad_ssl_dir: '/my/path/to/zammad-certdir'
 
 ```
 
@@ -60,7 +59,7 @@ Add to `requirements.yml`:
 ```yml
 ---
 
-- src: sloan87.zammad
+- src: DirectorSloan.zammad
 
 ...
 ```
@@ -82,7 +81,7 @@ Write a top-level playbook:
   hosts: worker
 
   roles:
-    - role: sloan87.zammad
+    - role: DirectorSloan.zammad
       tags:
         - zammad
 
@@ -113,10 +112,10 @@ MIT
 Author Information
 ------------------
 
-This role was created in 2018 by Ben Langenberg [sloan87 at GitHub][sloan87], HPC cluster systems administrator at the [Helmholtz-Centre for Environmental Research GmbH - UFZ][ufz], role skel based on a draft by Christian Krause aka [wookietreiber at GitHub][wookietreiber].
+This role was created in 2018 by Ben Langenberg [DirectorSloan at GitHub][DirectorSloan], HPC cluster systems administrator at the [Helmholtz-Centre for Environmental Research GmbH - UFZ][ufz], role skel based on a draft by Christian Krause aka [wookietreiber at GitHub][wookietreiber].
 
 
 [ufz]: https://www.ufz.de
-[sloan87]: https://github.com/sloan87
+[DirectorSloan]: https://github.com/DirectorSloan
 [wookietreiber]: https://github.com/wookietreiber
 [zammad]: http://www.zammad.org
