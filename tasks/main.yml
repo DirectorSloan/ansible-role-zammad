@@ -15,36 +15,6 @@
     - yum
     - zammad
 
-- name: create zammad ssl dir
-  file:
-    path: "{{ zammad_ssl_dir }}"
-    state: directory
-    mode: 0750
-    owner: root
-    group: nginx
-
-- name: copy certs to ssl destination
-  copy:
-    src: '{{ zammad_ssl_cert_key_local_path }}/{{ item }}'
-    dest: '{{ zammad_ssl_dir }}/{{ item }}'
-    mode: 0644
-    owner: root
-    group: root
-  tags:
-    - certs
-  when: zammad_cert_installation == 'yes'
-  with_items:
-    - '{{ zammad_ssl_cert_key }}'
-    - '{{ zammad_ssl_cert }}'
-
-- name: set correct file group ownership to cert files
-  file:
-    path: '{{ zammad_ssl_dir }}/{{ item }}'
-    group: nginx
-  loop:
-    - '{{ zammad_ssl_cert }}'
-    - '{{ zammad_ssl_cert_key }}'
-    
 - name: elasticsearch for zammad details
   import_tasks: elasticsearch.yml
   tags:
